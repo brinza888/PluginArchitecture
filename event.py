@@ -1,5 +1,6 @@
 class Event:
-    def __init__(self):
+    def __init__(self, name):
+        self.name = name
         self.subscribes = []
 
     def subscribe(self, func):
@@ -17,3 +18,6 @@ class Event:
     def run(self, *args, **kwargs):
         for sub in self.subscribes:
             sub(*args, **kwargs)
+
+    def __repr__(self):
+        return f"Event({self.name})"
