@@ -27,12 +27,12 @@ class Loader:
             try:
                 plugin = cls(*args, **kwargs)
             except Exception as ex:
-                self.stderr.write(f"{ex} caught during instantiate {cls}")
+                self.stderr.write(f"'{ex}' caught during instantiate {cls}")
                 continue
             try:
                 plugin.load()
             except Exception as ex:
-                self.stderr.write(f"{ex} caught during loading {plugin}")
+                self.stderr.write(f"'{ex}' caught during loading {plugin}")
                 continue
             self.plugins.append(plugin)
 
@@ -41,10 +41,10 @@ class Loader:
             try:
                 plugin.unload(*args, **kwargs)
             except Exception as ex:
-                self.stderr.write(f"{ex} caught during unloading {plugin}")
+                self.stderr.write(f"'{ex}' caught during unloading {plugin}")
 
     def get(self, name):
         for plugin in self.plugins:
             if plugin.name == name:
                 return plugin
-        raise AttributeError(f"Cant find Plugin {name}")
+        raise KeyError(f"Cant find Plugin {name}")
