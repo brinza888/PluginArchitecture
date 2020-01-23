@@ -2,8 +2,8 @@ from abc import ABCMeta, abstractmethod
 
 
 class Plugin (metaclass=ABCMeta):
-    def __init__(self, *args, **kwargs):
-        pass
+    def __init__(self, ev_manager, *args, **kwargs):
+        self.ev_manager = ev_manager
 
     @property
     @abstractmethod
